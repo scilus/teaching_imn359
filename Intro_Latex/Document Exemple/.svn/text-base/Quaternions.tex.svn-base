@@ -1,0 +1,190 @@
+% You should title the file with a .tex extension (hw1.tex, for example)
+\documentclass[11pt]{article}
+
+% Use utf-8 encoding for foreign characters
+\usepackage[latin1]{inputenc}
+\usepackage[french]{babel}
+\usepackage{graphicx}
+\usepackage{subfig}
+
+\usepackage{fullpage}
+
+% More symbols
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+\usepackage{latexsym}
+\usepackage{bbm}
+\usepackage{color}
+\usepackage{fancyhdr}
+\usepackage[french, linesnumbered, ruled , vlined]{algorithm2e}
+\usepackage[normalem]{ulem}
+
+\usepackage{cancel} % utiliser comme ceci : \cancel{texte} pour dasher du texte.
+
+\DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it}
+										%												\cancelto{0}{texte2} pour produire une petite flèche qui affiche 0 en plus de dasher.
+
+\setlength\parindent{0.1in}
+\setlength\parskip{0in} 
+
+\newcommand{\ssection}[1]{
+  \section[#1]{\fontsize{14pt}{0pt}\scshape #1}}
+
+\renewcommand{\labelenumi}{\alph{enumi}}
+
+\newcommand{\question}[2] {\vspace{.25in} \hrule\vspace{0.5em}
+%\noindent{\bf #1 #2} \vspace{0.5em}
+\hrule \vspace{.10in}}
+\renewcommand{\part}[1] {\vspace{.10in} {\bf (#1)}}
+
+
+\newcommand{\refImg}[1]{\textit{(fig \ref{#1})}}
+
+\begin{document}
+
+\begin{center}
+%\vspace*{0.5in}
+	{\fontsize{15pt}{10pt}\sc{IMN538 - Animation par ordinateur}}\\
+	\bigskip\bigskip
+	{\fontsize{20pt}{20pt}\sc{Feuile de référence}}\\
+	\smallskip
+
+	{\fontsize{15pt}{10pt}\sc{Quaternions}}\\
+	{Le mardi 13 janvier 2009}\\
+	\bigskip
+\end{center}
+
+\section{Notation}
+
+Un quaternion est noté :
+
+\begin{center}$
+\begin{array}{rcl}
+q &=& [s,(x,y,z)]\\
+ &=& [s,v]
+\end{array}$
+\end{center}
+
+\begin{center}
+où $v = (x,y,z)$
+\end{center}
+
+\section{Propriétés}
+
+Les quaternions sont non-commutatifs :  $q_1q_2 \neq q_2q_1$\\
+
+Les quaternions sont associatifs :  $q_1(q_2q_3) = (q_1q_2)q_3$\\
+
+\section{Opérations}
+
+\begin{tabular}{ll}
+Addition: & $[s_1,v_1] + [s_2,v_2] = [s_1 + s_2, v_1 + v_2]$\\\\
+Multiplication: & $[s_1,v_1][s_2,v_2] = [s_1\cdot s_2 - v_1 \cdot v_2, s_1v_2 + s_2v_1 + v_1\times v_2]$\\\\
+Multiplication avec une constante : & $(k)[s,v] = [ks,kv]$\\\\
+Produit Scalaire: & $[s_1,v_1]\cdot[s_2,v_2] = s_1s_2 + v_1\cdot v_2$\\\\
+Norme : & $||q|| = \sqrt{s^2+x^2+y^2+z^2}$\\\\
+Identité : &$[s,v][1,(0,0,0)] = [s,v]$\\\\
+Inverse : &$q^{-1} = (\frac{1}{||q||})^2[s,-v]$\\\\
+& $q^{-1}q = qq^{-1} =[1,(0,0,0)]$\\\\
+& $(pq)^{-1} = q^{-1}p^{-1}$\\\\
+Normalisation : & $q/(||q||)$\\\\
+\end{tabular}
+
+
+\section{Opposé d'un quaternion}
+
+L'opposé (négatif) d'un quaternion est égal à ce même quaternion positif.\\
+
+\textbf{Démonstration:}
+
+\begin{eqnarray*}
+-q&=&Rot_{[-\theta,-(x,y,z)]}\\\\
+&=&[cos(-\theta/2),sin(-\theta/2)(-(x,y,z))]\\\\
+&=&[cos(\theta/2),-sin(\theta/2)(-(x,y,z))]\\\\
+&=&[cos(\theta/2),sin(\theta/2)(x,y,z)]\\\\
+&=&Rot_{[\theta,(x,y,z)]}\\\\
+&=&q
+\end{eqnarray*}
+\bigskip
+
+Pour comprendre la démonstration, notons que:\\
+
+\begin{tabular}{rl}
+(1) & $Sin$ est une fonction \textbf{impaire}, donc $-sin(\theta) = sin(-\theta)$\\
+(2) & $Cos$ est une fonction \textbf{paire}, donc $cos(-\theta) = cos(\theta)$\\
+\end{tabular}
+
+\section{Rotation à l'aide de quaternion}
+
+Il est possible de construire un quaternion représentant une rotation à partir, entre autre, de la représentation par angle et axe:
+
+\begin{equation*}
+Rot_{[\theta,(x,y,z)]} = [cos(\theta/2),sin(\theta/2)(x,y,z)]
+\end{equation*}
+\bigskip
+
+La rotation d'un vecteur 3D $v$ à l'aide d'un quaternion s'effectue comme suit:
+
+\begin{equation*}
+v' = Rot(v) = qvq^{-1}
+\end{equation*}
+\bigskip
+où $v$ est converti en un quaternion  tel que:
+\begin{equation*}
+v = [0,(v_x,v_y,v_z)]
+\end{equation*}
+
+\newpage
+La concaténation de plusieurs rotations  s'effectue comme suit:
+
+\begin{eqnarray*}
+Rot_q(Rot_p(v)) &=& q(pvp^{-1})q^{-1}\\
+&=& (qp)v(p^{-1}q^{-1})\\
+&=& (qp)v(qp)^{-1}\\
+&=& Rot_{qp}(v)\\
+\end{eqnarray*}
+
+\section{Conversion}
+
+Il est possible de convertir un quaternion en une matrice $3\times 3$ représentant une orientation:
+
+\begin{equation*}
+q = [s,(x,y,z)]\\
+\end{equation*}
+\smallskip
+\begin{equation*}
+M_q = 
+\left[
+\begin{array}{ccc}
+1-2y^2-2z^2 & 2xy-2sz & 2xz + 2sy\\
+2xy+2sz & 1-2x^2-2z^2 & 2yz-2sx \\
+2xz-2sy & 2yz + 2sx & 1 - 2x^2-2y^2\\
+\end{array}
+\right]
+\end{equation*}
+
+\section{Interpolation de quaternions}
+
+L'interpolation entre deux quaternions est appellée une \textit{interpolation linéaire sphérique} (Linear Spherical Interpolation), aussi appellée "Slerp". Elle se calcule comme suit:\\
+
+(1) On trouve l'angle qui sépare les deux quaternions :
+
+\begin{equation*}
+cos(\theta) = q_1\cdot q_2 = s_1s_2 + v_1 \cdot v_2
+\end{equation*}\bigskip
+
+(2) Grâce à cet angle, on interpole entre les deux quaternions:
+
+\begin{equation*}
+slerp(q_1,q_2,u) = \frac{sin((1-u)\theta)}{sin(\theta)}q_1 + \frac{sin(u\theta)}{sin(\theta)}q_2
+\end{equation*}
+
+\section{Notes importantes}
+
+Lors de l'expression d'une rotation à partir d'un angle et d'un axe, la partie scalaire $s$ sera toujours située entre -1 et 1.\\
+
+Ceci étant dit, il est possible qu'un quaternion possède une partie scalaire $s$ supérieure à 1 ou inférieure à -1. Dans un tel cas, procéder à une rotation résultera en une transformation ne préservant pas l'isométrie. Autrement dit, un modèle à laquelle on appliquerait cette rotation serait déformée, ses distances n'étant pas préservées.\\
+
+\end{document}

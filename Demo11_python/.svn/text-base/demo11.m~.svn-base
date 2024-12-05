@@ -1,0 +1,157 @@
+%%% demo des ondelettes de Haar 1D
+
+%%%%%%%%%%%%%%%% 1D Haar Wavelet DECOMPOSITION %%%%%%%%%%%%%%%%%%%%%%
+% get signal
+load piece_regular.mat
+n = 512;
+f = piece_regular;
+plot(f);
+
+
+% initialize coeffs as signal itself, 
+% scale 2^9 = 512 bins, resolution 2^{-9}
+fw = f;
+
+% initial scale j is the max one
+j = log2(n)-1;
+
+% fw coefficients will be iteratively computed until they contain the Haar
+% wavelet
+
+A = fw(1:2^(j+1));
+
+% 256x1
+% we compute average and differences to get coarse and details. 
+% They are weighted by 1/sqrt(2) to maintain orthogonality.
+Coarse = ( A(1:2:length(A)) + A(2:2:length(A)) )/sqrt(2);
+Detail = ( A(1:2:length(A)) - A(2:2:length(A)) )/sqrt(2);
+
+
+% Concatinate
+A = [Coarse; Detail];
+
+% plot Coarse
+clf;
+subplot(2,1,1);
+plot(1:n,f,'.-'); axis('tight'); title('Signal');
+subplot(2,1,2);
+plot(1:2:n,Coarse,'.-'); axis('tight'); title('Coarse');
+
+
+
+% on zoom dans une region de Coarse
+s = 400; t = 40;
+clf;
+subplot(2,1,1);
+plot(f,'.-'); axis([s-t s+t 0 1]); title('Signal (zoom)');
+subplot(2,1,2);
+plot(Coarse,'.-'); axis([(s-t)/2 (s+t)/2 min(A) max(A)]); title('Averages (zoom)');
+
+
+% plot Details
+clf;
+subplot(2,1,1);
+plot(1:n,f,'.-'); axis('tight'); title('Signal');
+subplot(2,1,2);
+plot(1:2:n,Detail,'.-'); axis('tight'); title('Details');
+
+
+% plot Both
+clf;
+subplot(2,1,1);
+plot(f); axis('tight'); title('Signal');
+subplot(2,1,2);
+plot(A); axis('tight'); title('Transformed');
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+computeHaar1D
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+disp(strcat(['Energy of the signal       = ' num2str(norm(f).^2,3)]));
+disp(strcat(['Energy of the coefficients = ' num2str(norm(fw).^2,3)]));
+
+
+
+% Plot the coefficients
+clf;
+plot_wavelet(fw);
+axis([1 n -2 2]);
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 1D Reconstruction 
+%
+% Initialize the image to recover f1 as the transformed coefficient, 
+% and select the smallest possible scale.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+f1 = fw;
+j = 0;
+
+%Retrieve coarse and detail coefficients in the vertical direction.
+Coarse = f1(1:2^j);
+Detail = f1(2^j+1:2^(j+1));
+
+%Undo the transform by computing sums and differences.
+
+f1(1:2:2^(j+1)) = ( Coarse + Detail )/sqrt(2);
+f1(2:2:2^(j+1)) = ( Coarse - Detail )/sqrt(2);
+
+
+computeHaar1DReconstruction
+
+% Original image versus Reconstructed image
+disp(strcat((['Error |f-f1|/|f| = ' num2str(norm(f-f1)/norm(f))])));
+
+subplot(2,1,1);
+plot(f); axis('tight'); title('Original signal');
+subplot(2,1,2);
+plot(f1); axis('tight'); title(['Reconstructed signal with full HAAR transform, error = ' num2str(norm(f-f1)/norm(f))]);
+
+
+%%%%%%%%%%%%%%%%%%
+% Approximations %
+%%%%%%%%%%%%%%%%%%
+cut = 256;
+fw_a = zeros(length(fw), 1); fw_a(1:cut) = fw(1:cut);
+plot_wavelet(fw_a);
+
+fw_max = perform_largest_thresh(fw, cut);
+plot_wavelet(fw_max)
+
+fw = fw_a;
+computeHaar1DReconstruction;
+f1_
+
+clf;
+subplot(2,1,1);
+plot(f,'-'); axis('tight'); title('Original Signal');
+subplot(2,1,2);
+plot(f1,'r-'); axis('tight'); title(['Approximated Signal with ' num2str(cut) ' coefficients']);
+disp(strcat((['Error |f-f1|/|f| = ' num2str(norm(f-f1)/norm(f))])));
+
+
+fw = fw_max;
+
+
+
+cut = 100;
+fw_a = zeros(length(fw), 1); fw_a(1:cut) = fw(1:cut);
+plot_wavelet(fw_a);
+
+fw = fw_a;
+computeHaar1DReconstruction;
+clf;
+subplot(2,1,1);
+plot(f,'-'); axis('tight'); title('Original Signal');
+subplot(2,1,2);
+plot(f1,'r-'); axis('tight'); title(['Approximated Signal with ' num2str(cut) ' coefficients']);
+
+disp(strcat((['Error |f-f1|/|f| = ' num2str(norm(f-f1)/norm(f))])));
+
+
+
+
+

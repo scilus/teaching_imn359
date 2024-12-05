@@ -1,0 +1,100 @@
+%
+% La première partie d'un document LateX est toujours son préambule. Vous pouvez
+% voir le préambule d'un document comme étant la séquence servant le configurer 
+%correctement, un peu comme on configure un projet visual studio ou un makefile 
+%avant de compiler un logiciel en C++.
+%
+% Comme on détermine la classe de notre logiciel (console, fenêtre, etc.) 
+% lorsqu'on crée un nouveau programme, il faut débuter un document lateX en 
+% spécifiant la classe du document que nous souhaiterons produire. Des exemples 
+% de différentes classes possibles sont :
+%
+%	article :	Articles papier, rapport, court texte, etc. Ce que vous utiliserez
+%					principalement cette session-ci.
+%
+%	book :		Plus complet et plus élaboré, permet d'écrire des livres, des
+%					thèses, etc.
+%
+%	report :		Plus complet que la classe article, pour les rapports ayant
+%					plusieurs sections principales ou plusieurs petits chapitres.
+%					(personnellement je préfère utiliser book que report rendu là.)
+%
+%	memoir :		Très similaire à report pour la taille mais ressemble à "book"
+%					pour la forme.
+%
+%	letter :		Semblable à article mais pour écrire des lettres.
+%
+%	slides :		Pour construire des présentations avec acétates, style powerpoint.
+%					(personnellement, je déconseille excepté si la présentation est
+%					bourrée de mathématique. Sinon, faire un présentation LateX est
+%					extrêmement lourd.)
+%
+% Chaque classe de document peut aussi contenir une ou plusieurs options. Les
+% options sont globales et servent à définir l'allure générale du document. Par
+% exemple pour la taille de la police, le type de papier, le nombre de colonnes
+% etc. Les options les plus courantes sont :
+%
+%	10pt, 11pt,12pt, etc.:	Indique la taille de base du texte. Les titres et
+%									le texte sont dimensionnés en conséquence.
+%
+%	a4paper,a5paper,etc.:	Type de papier utilisé pour l'impression.
+%
+%	twocolumn :					Pour créer un document sur deux colonnes.
+%
+%	draft :						Pour une ébauche de document, ajoute des espacements.
+%
+% Pour spécifier la classe du document, on utilise la commande "\documentclass",
+% cette dernière doit se trouver au début du document. 
+%
+% Nous génèrerons ici un article à une colonne en 11pt. C'est ce que vous ferez
+% la plupart du temps en session. (11pt ou 10pt, informez-vous à Max! -Olivier)
+\documentclass[10pt]{article}
+
+%
+% Une fois la classe du document établie, il est maintenant temps d'inclure des
+% packages à notre document. Comme pour les librairies en programmation, les 
+% packages sous LateX contiennent différentes fonctionnalités additionnelles aux  
+% fonctionnalités LateX de base. Dans son état initial, latex reste relativement 
+% dépourvu de fonctionnalités,il faut donc inclure certaines librairies si on 
+% veut, par exemple, supporter la langue française correctement. Dans notre cas, 
+% nous souhaiterons inclure les librairies suivantes au minimum :
+%
+%	inputenc	: 	Librairie permettant d'ajouter du support pour les caractères 
+%					accentués. (à utliliser avec l'option "latin1")
+%
+%	babel :		Permet d'ajouter des nouvelles langues aux textes prédéfinis dans
+%					latex. Par exemple "table of content" devient "table des matières"
+%					(à utiliser avec l'option "french")
+%
+%	fontenc :	Permet de spécifier à latex l'utilisation du codage de caractère
+%					T1, la nouvelle norme de LateX 2. Par défaut elle est désactivée
+%					pour la rétro compatibilité. (option "T1")
+%					
+%	verbatim :	Permet d'inclure du texte non interprété par latex. Utile pour
+%					le pseudo-code ou inclure des commandes latex directement dans
+%					du texte.
+%
+%	graphicx :	Permet d'inclure des images dans notre document.
+%
+%	Pour ajouter un nouveau package, on écrit simplement la commande "\usepackage"
+%	avec l'option en crochets et le nom du package en paramètre.
+
+\usepackage[latin1]{inputenc}
+\usepackage[french]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{verbatim}
+\usepackage{graphicx}
+
+% À ce stade, le préambule minimal du document est complété! Il est maintenant 
+% possible de débuter la création du document en soit.
+%
+% Pour indiquer à LateX que le document débute, on doit se mettre dans
+% l'environnement de travail "document", via la commande d'entrée 
+% \begin{document}. Lorsque le document sera fini, il faudra avertir le
+% compilateur que le texte est terminé, en écrit \end{document}
+%
+% Pour l'exemple, nous un petit mot de bienvenue dans le document. Nous
+% sommes ensuite prêts à compiler!
+\begin{document}
+Bonjour la planète!
+\end{document}

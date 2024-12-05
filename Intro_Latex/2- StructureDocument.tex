@@ -1,0 +1,312 @@
+% Dans la section précédente, nous avons vu comment créer un préambule de
+% document. Sans plus attendre, écrivons tout de suite notre préambule!
+\documentclass[10pt]{article}
+
+\usepackage[french]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc} % IL FAUT UTILISER L'ENCODAGE UTF8
+\usepackage{verbatim}
+\usepackage{graphicx}
+
+
+% ...et débutons le document :
+\begin{document}
+
+% -- Notion de section ----
+%
+% Le document maintenant créé, il peut être intéressant d'organiser notre travail
+% d'une certaine façon. Pour ceci, Latex nous propose la notion de "section". Les 
+% sections peuvent avoir différents niveau, le niveau de la section étant indiqué 
+% par le nombre de fois où on écrit "sub" devant la section.
+%
+% Les sections peuvent aussi s'imbriquer et avoir un titre. Par exemple :
+
+Exemple de sections : 
+\section{Titre de la section }
+	\subsection{Titre de la première sous-section}
+		\subsubsection{Woah! Une sous-sous-section}
+		\subsubsection{ Et une autre!}
+			On peut bien sûr écrire du texte entre les sections!
+	\subsection{ Et on remonte d'un niveau.}
+\section{Bla}
+\section{Bla}
+	\subsection{Blabla}
+
+Vous catchez le principe...
+
+\newpage
+
+% On remarque que LateX numérote les sections et les sous-sections 
+% automatiquement.
+
+
+% -- Listes et énumération --
+%
+% Il peut être intéressant de lister ou de numéroter les objets sous latex.
+% Comme pour les section, les listes ou énumérations peuvent s'indenter. Une
+% liste ou une énumération est un environnement, elles sont donc contenues entre
+% des commandes "begin" et "end"
+%
+% Chaque élément la liste ou de l'énumération doit débuter par la commande \item.
+% Vous pouvez mettre pratiquement n'importe quoi à la suite, tant que vous 
+% n'écrivez pas un autre \item vous restez dans le même item. Du fait que la 
+% liste et l'énumération utilisent tous deux les "items", il est facile de 
+% convertir une énumération en liste et vice-versa.
+%
+% Pour une liste :
+\begin{itemize}
+\item Premier Item
+\item Deuxième Item
+	\begin{itemize}
+	\item Sous-item 1
+	\item Sous-item 2
+	\end{itemize}
+\item Troisième Item
+\end{itemize}
+
+\bigskip\bigskip
+
+% Et pour une énumération : (Remarquez que le style d'énumération change)
+\begin{enumerate}
+\item Premier Item
+\item Deuxième Item
+	\begin{enumerate}
+	\item Sous-item 1
+	\item Sous-item 2
+	\end{enumerate}
+\item Troisième Item
+\end{enumerate}
+
+\bigskip\bigskip
+
+% On peut aussi mélanger les deux.
+\begin{itemize}
+\item Premier Item
+\item Deuxième Item
+	\begin{enumerate}
+	\item Sous-item énuméré 1
+	\item Sous-item énuméré 2
+	\end{enumerate}
+\item Troisième Item
+\end{itemize}
+
+% -- Espacements du texte --
+%
+% LateX contrôle généralement bien les espacement et les tailles de texte. Malgré
+% tout, il peut parfois être intéressant de pouvoir contrôler les espacements et 
+% autres caractères vides sous latex. Pour ce faire, on peut utiliser les 
+% commandes suivantes :
+%
+%	\bigskip ou \smallskip :	Produit un espacement vertical de taille plus
+%										moins grosse constante.
+%
+%	\\ :	Placé à la fin d'une ligne, les barres obliques inversées doubles
+%			forcent latex à crééer une nouvelle ligne vide.
+%
+%	\vspace{espacement} :	Produit un espacement de la longueur demandée avec
+%									l'unité demandée (pt, in, mm, cm, etc.). Il existe
+%									ausi un équivalent horizontal \hspace
+%
+%	\noindent :	Enlève l'indentation de première ligne d'un paragraphe lorsque
+%					placé avant celui-ci.
+%
+%	\vfill :	Place autant d'espace blanc vertical que possible entre deux
+%				éléments. ( \hfill est aussi disponible pour faire la même chose
+%				horizontalement)
+%
+% Finalement, pour séparer deux paragraphe, il faut simplement laisser deux 
+% lignes blanches. Pour que les paragraphes aient un espace vide, utiliser les
+% \\.
+\newpage
+\textbf{Deux paragraphes :}\\
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
+incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis 
+nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
+fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in 
+culpa qui officia deserunt mollit anim id est laborum."\\
+\bigskip
+
+\textbf{Deux paragraphes avec un espace :}\\
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
+incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis 
+nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\\
+
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
+fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in 
+culpa qui officia deserunt mollit anim id est laborum."\\
+
+\noindent
+\textbf{Pour enlever l'indentation de première ligne :}\\
+\noindent
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
+incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis 
+nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\\
+
+
+\noindent
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
+fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in 
+culpa qui officia deserunt mollit anim id est laborum."\\
+
+\newpage
+
+Espacement utilisant vspace de 20mm.
+
+\vspace{20 mm}
+
+Fin de l'espacement de 20mm.\\
+
+
+Espacement horizontal qui s'étire avec "hfill" \hfill Voilà!
+
+Espacement vertical avec "vfill".
+
+\vfill
+
+On prend le plus d'espace vertical possible!
+
+% -- Alignement du texte --
+% 
+% Sous LateX, l'alignement du texte s'effectue à l'aide des environnements
+% "flushleft", "flushright", "center" et "quote".
+%
+%	flushleft et flushright :	Alignent le texte respectivement à gauche et à
+%										droite.
+%
+%	center :	Aligne le texte au centre
+%
+%	quote :	Aligne le texte à gauche avec un certain espace avant et après
+%				le texte.
+\newpage
+
+\begin{center}
+Ce texte est aligné au centre.
+\end{center}
+
+\begin{flushleft}
+Ce texte est aligné à gauche. L'alignement à gauche est déjà activé par défaut.
+\end{flushleft}
+
+\begin{flushright}
+Ce texte est aligné à droite.
+\end{flushright}
+
+
+
+\begin{quote}
+Ce texte est une citation, il est donc aligné à gauche mais avec un espacement 
+avant le texte. Je suis en train de tapper une longue phrase qui veut pas dire
+grand chose uniquement pour que vous puissiez remarquer l'effet sur plusieurs
+lignes et constater de celui-ci par vous-même. Booya.
+\end{quote}
+
+% -- Table des matières --
+%
+% La table des matières se construit et se met à jour automatiquement en fonction
+% des sections que vous avez crées. Pour vous assurer que les numéros de page
+% de la table des matières sont à jour, il est suggéré de compiler 2 fois, Latex
+% prend parfois plus d'une itération pour mettre les informations dynamiques
+% d'un document à jour.
+%
+% Pour insérer une table des matières, simplement faire :
+\newpage
+
+\tableofcontents
+
+% -- Tableaux --
+%
+% Une dernière méthode pour organiser votre document est de présenter
+% l'information sous la forme de tableaux. La création d'un tableau s'effectue
+% dans l'environnement "tabular" et suit la syntaxe suivante :
+%
+% \begin{tabular}{organisation des colonnes}
+%		tableau ici
+% \end{tabular}
+%
+% La section pour l'organisation des colonnes permet d'indiquer comment chaque
+% colonnes seront alignées dans le document, et comment les colonnes seront
+% séparées. Il existe 3 types d'alignement pour les colonnes :
+%
+%	- r (right)
+%	- l (left)
+%	- c (center)
+%
+% Pour indiquer comment le nombre de colonnes dans un tableau et leur alignement
+% on écrit simplement les lettres une à la suite des autres entre le deuxième
+% couple d'accolades après "tabular". Si on souhaite que les colonnes soient
+% séparées par un trait, on écrit "|" entre deux lettres. Par exemple :
+%
+% \begin{tabular}{|c|c|l|} 
+%
+% Génèrerait un tableau à trois colonnes, toutes séparées par des lignes
+% verticales, les deux premières étant centrées et la troisième étant alignée
+% à gauche.
+%
+% Finalement, lorsqu'on rempli le tableau, chaque ligne du tableau doit terminer
+% par un "\\". Chaque cellule d'une ligne est quant à elle séparée d'un "&" et
+% il est possible d'insérer un trait horizontal entre chaque ligne en utilisant
+% la commande "\hline".
+%
+% Des exemples concret :
+%
+\newpage
+
+\begin{tabular}{|r|c l|}
+	\hline
+	1.1 & 1.2 & 1.3\\ 
+	\hline
+	2.1 & 2.2 &2.3\\
+	\hline
+	3.1 & 3.2 & 3.3\\
+	\hline
+\end{tabular}
+
+\vspace{30mm}
+
+\begin{tabular}{c|c|c}
+	\hline
+	Titre1 & Titre 2 & Titre3\\
+	\hline
+	\hline
+	1.1 & 1.2 & 1.3\\ 
+	\hline
+	2.1 & 2.2 &2.3\\
+	\hline
+	3.1 & 3.2 & 3.3\\
+	\hline
+\end{tabular}
+
+% -- Sous-Titre et référence de tableau --
+%
+% Le sujet est un peu plus avancé, mais notez qu'il est possible d'encapsuler
+% l'environnement "tabular" dans un autre environnement, soit l'environnement
+% "table". Cet environnement permet de définir des informations périphériques
+% au tableau tels que des textes descriptifs ou une étiquette d'identification.
+% (Plus d'information au sujet des étiquettes seront données plus tard.)
+%
+% L'environnement table numérote automatiquement les tableaux tout au long
+% de votre document.
+
+\vspace{30 mm}
+
+\begin{table}[h!]
+\begin{center}
+	\begin{tabular}{|r|c|l|}
+		\hline
+		1.1 & 1.2 & 1.3\\ 
+		\hline
+		2.1 & 2.2 & 2.3\\ 
+		\hline
+		3.1 & 3.2 & 3.3\\ 
+		\hline
+		4.1 & 4.2 & 4.3\\ 
+		\hline
+	\end{tabular}
+\end{center}
+\caption{Description du tableau} 
+\label{etiquette_pour_rerefence} 
+\end{table}
+
+\end{document}

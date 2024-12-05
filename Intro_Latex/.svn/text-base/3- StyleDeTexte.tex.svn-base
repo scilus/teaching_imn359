@@ -1,0 +1,83 @@
+\documentclass[10pt]{article}
+
+\usepackage[latin1]{inputenc}
+\usepackage[french]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{verbatim}
+\usepackage{graphicx}
+
+\begin{document}
+
+% -- Texte en italique/ gras --
+%
+% Le texte sous LateX peut être mis en italique, gras, souligné, etc. Comme 
+% sous word. Pour soumettre le texte à un certain style, on doit cependant
+% utiliser la commande à cet effet et mettre le texte en paramètre à cette
+% commande.
+%
+% Les tyles de texte principaux sont :
+%
+%	- textbf (Text Bold Face - gras)
+%	- textit (Text Italic - italique)
+%	- underline (souligne le texte, une alternative est la commande "emph")
+%
+
+\textbf{Bonjour, ceci est un exemple de texte en gras.}\\
+\bigskip
+
+\textit{Encore un exemple, cette fois-ci en italique!}\\
+\bigskip
+
+\underline{Autre exemple, souligné cette fois.}\\
+\bigskip
+
+\textbf{\textit{Il est possible de combiner des styles au texte aussi.}};
+
+\newpage
+
+% -- Taille du Texte --
+%
+% En théorie, LateX devrait toujours gérer la taille du texte correctement pour
+% vous. Si le texte est trop petit ou trop grand en général, simplement modifier
+% l'option de taille de police dans la classe du document devrait être suffisant.
+%
+% Dans les cas spéciaux où vous souhaiteriez modifier malgré tout la taille du
+% texte, vous pouvez utiliser certaines commandes crées à cet effet. Puisque
+% les tailles de texte sous LateX sont toujours relatives à la taille entrée en
+% option de classe du document, il n'est pas possible d'écrire directement 
+% une taille de texte à respecter. Latex possède donc dix commandes de tailles
+% différentes qui génèrent une texte d'une certaine taille par rapport à la
+% taille globalement configurée.
+%
+% Du plus petit au plus grand on a donc :
+%
+% \tiny
+% \scriptsize
+% \footnotesize
+% \small
+% \normalsize
+% \large
+% \Large
+% \LARGE
+% \huge
+% \Huge
+%
+\tiny{Ceci est un mini texte}
+
+\small{Un peu plus gros.}
+
+\normalsize{Taille normale.}
+
+\Large{Plus gros}
+
+\Huge{Le plus gros possible.}
+
+% -- Couleurs de texte --
+%
+% Matlab ne supporte pas les couleurs nativement excepté dans les images. Pour
+% modifier la couleur du texte, vous devrez utiliser le package "color". Prenez
+% note qu'il n'est cependant pas d'usage de mettre du texte en couleur dans
+% un rapport scientifique. Il est donc conseillé d'éviter de le faire dans le 
+% cadre de vos travaux pratiques.
+
+\end{document}

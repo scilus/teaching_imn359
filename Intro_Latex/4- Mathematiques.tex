@@ -1,0 +1,243 @@
+\documentclass[10pt]{article}
+
+
+\usepackage[french]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc} % IL FAUT UTILISER L'ENCODAGE UTF8
+\usepackage{verbatim}
+\usepackage{graphicx}
+
+
+% **ATTENTION**
+%
+% Remarquez ici l'ajout du package suivant qui nous donne accès à des
+% polices mathématiques supplémentaires.
+\usepackage{bbm}
+
+\begin{document}
+
+% -- Environnement mathématique --
+%
+% Sous LateX, il existe deux environnements différents pour les mathématiques.
+%
+% 1- 	Environnement sur la ligne : Permet d'insérer une formule mathématique
+%		directement dans un paragraphe textuel. La formule sera dimensionnée de
+%		manière à ne pas affecter le text environnant.
+%
+% 2-	Environnement d'équation : Génère un nouveau bloc dans le document dans
+%		lequel une équation peut être écrite. Ce bloc doit être sur une ligne seule
+%		si vous voulez éviter des problèmes de mise en page.
+%
+%	Pour l'environnement sur la ligne, simplement délimiter les formules
+%	mathématiques par des $ $.
+%
+%	Pour l'environnement d'équation, délimitez l'équation par : $$ $$.
+%
+%	Si vous souhaitez que votre équation soit numérotée, utilisez l'environnement
+%	"equation". (\begin{equation} eq \end{equation})
+
+Exemples :\\
+\bigskip
+Bonjour, ceci est une ligne avec l'équation $3+4=7$ écrite à l'intérieure.\\
+
+Voici une équation un peu plus complexe écrite au fil du texte 
+$y = \sum^{4}_{i=0}s(i)+5$ elle sera compressée pour entrer dans le paragraphe 
+sans déranger l'alignement.\\
+\bigskip
+
+La même équation mais en équation seule :
+$$y = \sum^{4}_{i=0}s(i)+5$$
+
+\bigskip
+
+\begin{equation}y = \sum^{4}_{i=0}s(i)+5\end{equation}
+
+% -- Équation mathématiques complexes --
+%
+% Matlab possède une quantité faramineuse de symboles et expressions
+% mathématiques permettant de construire des équations. Chaque expression peut
+% être encapsulée dans un autre. Voici une revue des plus utilisées :
+%
+\newpage
+
+%Fraction
+Fraction : $$\frac{numerateur}{denominateur}$$\\
+\bigskip
+
+%Indice
+Indice : $$valeur_{indice}$$\\
+\bigskip
+
+%Exposant
+Exposant : $$valeur^{exposant}$$\\
+\bigskip
+
+%Indice et exposant combinés
+Indice et Exposant : $$valeur^{exposant}_{indice}$$\\
+\bigskip
+
+%Somme
+Somme : $$\sum^{bornesup}_{borneinf}$$\\
+\bigskip
+
+%Intégrale
+Intégrale : $$\int^{bornesub}_{borneinf}$$\\
+\bigskip
+
+%Racine
+Racine : $$\sqrt{contenu de la racine}$$\\
+
+
+%Transformée de fourier :
+On combine le tout pour faire une transformée de fourier.
+$$F(f) :\xi\rightarrow \hat{f}(\xi) = \int^{+\infty}_{-\infty}f(x)e^{-i\xi x}dx$$
+
+\newpage
+%Autre exemple pas pire compliqué :
+Un autre exemple plus complexe :
+
+$$\phi_n(\kappa) =
+ \frac{1}{4\pi^2\kappa^2} \int_0^\infty
+ \frac{\sin(\kappa R)}{\kappa R}
+ \frac{\partial}{\partial R}
+ \left[R^2\frac{\partial D_n(R)}{\partial R}\right]\,dR$$
+
+\bigskip
+
+Et pour terminer, un classique :
+$$x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}$$
+\bigskip
+
+% -- Matrices, Acollades et Parenthèses --
+%
+% La création de matrices sous LateX est très très simplaire à la création de
+% tableaux. On utilise cependant l'environnement "array" plutôt que "matrix".
+% Vu la similarité, rien ne vaut un bon exemple :
+\newpage
+$$\begin{array}{ccc}
+a & b & c \\
+d & e & f \\
+g & h & i \end{array}$$
+
+% Vous remarquerez cependant que la matrice n'est pas encadrée ou entre 
+% parenthèses. En effet, il faut explicitement dire à LateX quel type de
+% parenthèses ou d'Accolades utiliser. Le tout s'effectue à l'aide des
+% commandes "left" et "right" et du symbole situé juste après la commande.
+% 
+% Par exemple, pour avoir des crochets ouvrants et fermant, on ferait :
+% 
+%	\left[ matrice \right]
+%
+% Pour des parenthèses :
+%
+% \left( matrice \right)
+% 
+%
+% Si on reprend l'exemple précédent mais on utilise les accolades :
+\bigskip
+$$
+\left[
+\begin{array}{ccc}
+a & b & c \\
+d & e & f \\
+g & h & i \end{array}
+\right]$$
+
+% Ou les parenthèses
+\bigskip
+$$
+\left(
+\begin{array}{ccc}
+a & b & c \\
+d & e & f \\
+g & h & i \end{array}
+\right)$$
+
+%On peut devenir plutôt créatif avec ce système!
+$$
+y = 
+\left\{
+\begin{array}{l l}
+x+5 &x< 25\\
+\sqrt{x*2}& x = 25\\
+0& x> 25
+\end{array}\right. 
+$$
+
+
+%Le système \left \right d'acollades fonctionne aussi avec des fonctions
+%mathématiques, pas seulement des array. Par exemple :
+
+\vspace{30 mm}
+$$x=\left\{\frac{-b\pm\sqrt{b^2-4ac}}{2a}\right\}$$
+
+
+% -- Listes d'équations --
+%
+% Pour terminer, un dernier truc relativement intéressant, spécialement dans
+% le contexte de travaux pratiques où vous aurez à résoudre des équations,
+% il existe un environnement appellé "equation array" qui vous permet d'aligner
+% plusieurs équations les unes à la suite des autres. Cet environnement est
+% en réalité un environnement "array" standard, préconfiguré :
+
+
+\newpage
+\begin{eqnarray}
+ y &=& x^4 + 4 \\
+   &=& (x^2+2)^2 -4x^2 \\
+   &\le&(x^2+2)^2
+\end{eqnarray}
+
+%Pour éviter la numérotation automatique, simplement utiliser l'environnement
+% "eqnarray*" (avec un astérisque supplémentaire)
+
+\vspace{30 mm}
+\begin{eqnarray*}
+ y &=& x^4 + 4 \\
+   &=& (x^2+2)^2 -4x^2 \\
+   &\le&(x^2+2)^2
+\end{eqnarray*}
+
+% -- Caractères spéciaux, lettres grecques, etc. --
+%
+% Sous LateX, les lettres grecques sont habituellement définie via de petites
+% commandes épellant le nom de la lettre.
+% 
+% Quelques exemples :
+%
+% \alpha
+% \beta
+% \Omega
+% \omega
+% etc.
+%
+% Les caractères mathématiques spéciaux sous lateX sont habituellement défini
+% à l'aide d'une courte commande aussi. Pour trouver le caractère que vous
+% chercher, il est suggérer de consulter le chapitre 3 du très bon manuel
+% "A not so short introduction to LateX".
+%
+% http://www.ctan.org/tex-archive/info/lshort/english/lshort.pdf
+%
+% Quelques exemples, néanmoins, de symboles mathématiques :
+\newpage
+
+Plus grand ou égal : $\geq$\\
+\bigskip
+
+Plus petit ou égal : $\leq$\\
+\bigskip
+
+Vecteur : $\vec{a}$\\
+\bigskip
+
+Flèches : $\leftarrow \Rightarrow$\\
+\bigskip
+
+Lettres grecques : $\alpha \Omega \omega \Phi \chi \epsilon \beta $\\
+\bigskip
+
+Ensembles de nombres : $\mathbbm{R} \mathbbm{C}$\\
+\bigskip
+
+
+\end{document}

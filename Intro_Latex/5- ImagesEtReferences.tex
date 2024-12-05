@@ -1,0 +1,134 @@
+\documentclass[10pt]{article}
+
+
+\usepackage[french]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc} % IL FAUT UTILISER L'ENCODAGE UTF8
+\usepackage{verbatim}
+\usepackage{graphicx}
+
+
+\begin{document}
+
+% -- Ajout d'images --
+%
+% L'ajout de figure sous LateX s'effectue dans l'environnement "figure", via
+% la commande "\includegraphics" prenant en paramètre le chemin vers l'image.
+%
+% Vous remarquerez que l'environnement "figure" possède une option. Cette
+% option indique où LateX devrait tenter de placer l'image dans le document. En
+% effet, latex tentera de placer l'image dans le document à un emplacement ne
+% dérangeant pas les éléments textuels du document.
+% 
+% Le paramètre d'option passé indique à quel point LateX peut "déranger" ou non
+% le texte en y insérant une image. Par défaut, LateX tentera de placer les
+% images à la fin d'une page ou d'une section. Il est recommandé ici de
+% placer l'option à "h", pour "here", cequi forcera latex à placer l'image le
+% plus près possible de l'emplacement où elle est indiquée dans votre script.
+%
+
+\begin{figure}[ht]
+\begin{center}
+\includegraphics{Lena.jpg}
+\end{center}
+\end{figure}
+
+\newpage
+
+% Comme vous le remarquez sans doute, l'image de Lena est présentement trop
+% grosse pour nos besoins. Pour rectifier ce problème, nous pouvons ajouter
+% une boite de redimentionnement, via la commande "scalebox".
+%
+
+\begin{figure}[ht]
+\begin{center}
+\scalebox{0.5}{\includegraphics{Lena.jpg}}
+\end{center}
+\end{figure}
+
+\newpage
+
+% Comme pour les tableaux, il est possible d'ajouter une légende à l'image, en
+% utilisant la commande \caption. Vous remarquerez que la légende génère aussi
+% une numérotation d'image.
+
+\begin{figure}[ht]
+\begin{center}
+\scalebox{0.5}{\includegraphics{Lena.jpg}}
+\caption{Ceci est une image de Lena!}
+\end{center}
+\end{figure}
+
+
+\newpage
+% -- Mosaiques d'images --
+% 
+% Générer une mosaique d'images et relativement simple, il suffit simplement
+% de combiner les éléments vu précédemments, soit l'ajout d'images et les
+% tableaux :
+
+\begin{figure}[ht]
+\begin{center}
+\begin{tabular}{cc}
+\includegraphics[width=0.4\textwidth]{Lena.jpg} &
+\includegraphics[width=0.4\textwidth]{Lena.jpg} \\
+\includegraphics[width=0.4\textwidth]{Lena.jpg} &
+\includegraphics[width=0.4\textwidth]{Lena.jpg} \\
+\end{tabular}
+\end{center}
+\caption{ Des photos de Lena.}
+\end{figure}
+
+% Pour ajouter des commentaires à chaque sous image, vous pouvez utiliser la 
+% commande "subfloat" venant avec le package spécial : "subfig"
+
+
+\newpage
+% -- Étiquettes et références --
+%
+% Pour terminer notre exploration de lateX, notons qu'il est possible de faire
+% références à des formules, tableaux ou images à partir de n'importe où dans le
+% le document.
+%
+% La technique consiste à placer des étiquettes (\label) sur les éléments que
+% nous souhaiterons référencer, puis ensuite utiliser une référence (\ref) pour
+% pointer vers cet élément. LateX utilisera alors le numéro de la formule,
+% l'image ou la table pour y faire référence dans le code.
+%
+% L'exemple suivant crée une référence vers une image :
+%
+
+\begin{figure}[h!]
+\begin{center}
+\scalebox{0.5}{\includegraphics{Lena.jpg}}
+\caption{Ceci est une image de Lena!}
+\label{Image_Lena}
+\end{center}
+\end{figure}
+
+Ceci est une partie de texte et je souhaite faire une référence à l'image de
+Lena \textit{fig. \ref{Image_Lena}} qu'il y à quelque part dans le texte.
+
+% Le tout fonctionne aussi avec des formules et des tableaux.
+
+\begin{equation}
+y = x+2
+\label{SuperEquationCompliquee}
+\end{equation}
+
+Je fais référence à mon équation précédente! [ eq.\ref{SuperEquationCompliquee}]
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Ceci était une introduction très très courte à LateX. LateX est un outil
+% extrêmement vaste qui ne cesse de surprendre avec ses capacités. Pour pousser
+% le sujet plus loin, trouver des symboles ou des techniques qui n'ont pas été
+% abordées dans l'introduction, je vous réfère au guide :
+% "A Not So Short Introduction to LateX", situé à l'adresse suivante :
+%
+% http://www.ctan.org/tex-archive/info/lshort/english/lshort.pdf
+%
+
+\end{document}
