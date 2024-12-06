@@ -1,31 +1,34 @@
-import cmath as cm
+import numpy as np
 
 def racine(x):
     """
-    For example, racine(-4) will return 0+2i
+    Implementation de la racine carrée supportant
+    les valeurs négatives.
 
-    Parameters
+    Parametres
     ----------
-    x : the number to compute the square root
-    Returns
+    x : le nombre dont on veut connaître la racine carrée
+
+    Retour
     -------
-    r : the square root of x
+    r : la racine carrée de x
     """
-    
-    r = cm.sqrt(x)
+
+    r = np.emath.sqrt(x)
     return r
 
 
 def fact(number):
     """
-    Function to compute factorial of a number
+    Fonction pour calculer la factorielle d'un nombre
 
     Parameters
     ----------
-    number : the number to compute the factorial operator on
+    number : Nombre à évaluer
+
     Returns
     -------
-    response : factorial of number
+    response : Factorielle du nombre
     """
 
     response = 1
@@ -35,16 +38,18 @@ def fact(number):
 
     return response
 
+
 def fact_recursif(number):
     """
-    Function to compute factorial of a number recursively
+    Fonction factorielle, implémentation récursive.
 
     Parameters
     ----------
-    number : the number to compute the factorial operator on
+    number : Nombre à évaluer
+
     Returns
     -------
-    response : factorial of number
+    response : Factorielle du nombre
     """
 
     if number < 2:

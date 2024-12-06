@@ -1,61 +1,58 @@
-import cmath as cm
 import numpy as np
 
 from mes_fonctions import racine
 
 # les nombres complexes
-# Numpy ne supporte pas sqrt(-1)
-z = cm.sqrt(-1)
+# Pour calculer les racines de nombres négatifs
+# on utilise np.emath.sqrt() au lieu de np.sqrt(),
+# cette dernière retournant NaN pour les nombres négatifs
+z = np.emath.sqrt(-1)
+
+print("z:", z)
 
 # partie réelle
-print("Partie réelle: \n", z.real, "\n")
+print("Partie réelle de z:", z.real)
 
 # partie imaginaire
-print("Partie imaginaire: \n", z.imag, "\n")
-    
-# addition
+print("Partie imaginaire de z:", z.imag, "\n")
+
+"""
+On représente le nombre imaginaire "i" par le symbole "j",
+acollé directement à un nombre.
+"""
+
 z1 = (-3 + 2j)
 z2 = (1 - 1j)
-print("z1+z2: \n", z1+z2, "\n")
+
+# addition
+print("z1 + z2: \n", z1+z2, "\n")
 
 # multiplication
-z1 = (-3 + 2j)+(1 - 1j)
-z2 = 1 - 5j
-print("z1*z2: \n", z1*z2, "\n")
+print("z1 * z2: \n", z1*z2, "\n")
 
 # division
-print("z1/z2: \n", z1/z2, "\n")
+print("z1 / z2: \n", z1/z2, "\n")
 
-
-# modulus
+# module (norme)
 print("Module de z1: \n", np.abs(z1), "\n")
 
-# conjugate
+# conjugué complexe
 print("Conjugué de z1: \n", np.conj(z1), "\n")
 
 
-# Systeme d'equations
+# Résoudre un systeme d'equations de la forme Ax=b
+# revient à calculer x = inv(A)*b. La fonction .dot
+# sert à calculer le produit matriciel.
 A = [[2, -4], [1, 1]]
 b = [8, 1]
-x = np.divide(A, b)
-print("A/b: \n", x, "\n")
+x = np.dot(np.linalg.inv(A), b)
+print("x: \n", x, "\n")
 
 
 # Systeme d'equations complexes
 A = [[3 + 2j, 1 + 3j],[2, 2 + 1j]]
 b = [3, 5]
-x = np.divide(A, b)
-print("A/b: \n", x, "\n")
-
+x = np.dot(np.linalg.inv(A), b)
+print("x: \n", x, "\n")
 
 print("Reponse de la question #1a. racine(-4): \n", racine(-4))
-
-
-
-
-
-
-
-
-
-
