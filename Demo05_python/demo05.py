@@ -22,31 +22,29 @@ for i in f:
 
 axs[0][1].plot(f, np.real(G), '.-', linewidth=2)
 axs[0][1].set_xlabel('f')
-axs[0][1].set_ylabel('Real(G(f))')
-axs[0][1].set_title('Real part of G(f) = TF[g(t)]')
+axs[0][1].set_ylabel('Re[G(f)]')
+axs[0][1].set_title('Partie réelle de G(f) = TF[g(t)]')
 
 axs[1][0].plot(f, np.imag(G), '.-', linewidth=2)
 axs[1][0].set_xlabel('f')
-axs[1][0].set_ylabel('Im(G(f))')
-axs[1][0].set_title('Imaginery part of G(f) = TF[g(t)]')
+axs[1][0].set_ylabel('Im[G(f)]')
+axs[1][0].set_title('Partie imaginaire de G(f) = TF[g(t)]')
 
 axs[1][1].plot(f, np.abs(G), '.-', linewidth=2)
 axs[1][1].set_xlabel('f')
 axs[1][1].set_ylabel('abs(G(f))')
-axs[1][1].set_title('Modulus of G(f) = TF[g(t)]')
+axs[1][1].set_title('Module de G(f) = TF[g(t)]')
 
 axs[2][0].plot(f, np.abs(G), '.-', linewidth=2)
 axs[2][0].set_xlabel('f')
-axs[2][0].set_ylabel('Spectre d amplitude')
-axs[2][0].set_title('Spectre d amplitude')
+axs[2][0].set_ylabel("Amplitude")
+axs[2][0].set_title("Spectre d'amplitude")
 
 axs[2][1].plot(f, np.arctan(np.imag(G) / np.real(G)), '.-', linewidth=2)
 axs[2][1].set_xlabel('f')
-axs[2][1].set_ylabel('Spectre de phase')
-axs[2][1].set_title('Spectre de phase en radian')
+axs[2][1].set_ylabel("Phase")
+axs[2][1].set_title("Spectre de phase en radians")
 
+plt.tight_layout()
 plt.savefig('demo05.jpg')
 plt.show()
-
-
-

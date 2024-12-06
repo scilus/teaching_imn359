@@ -1,6 +1,5 @@
 import matplotlib.pyplot as plt
 import numpy as np
-from scipy.io import loadmat
 
 
 E = [[1, 1, 1, 1],
@@ -26,8 +25,7 @@ print(g4)
 
 
 from scipy.fft import fft, fftshift, ifft 
-g = loadmat("piece_regular.mat")['piece_regular']
-g = g.squeeze()
+g = np.load("piece_regular.npy")
 G = fft(g)
 t = np.linspace(0, 1, np.shape(g)[0])
 f = np.linspace(-256, 256, 512)
@@ -77,9 +75,3 @@ N = g.size
 print(np.sum(np.abs(G)**2) / N)
 
 # C'est la même chose pour les images comme on verra dans la demo06
-
-
-
-
-
-
