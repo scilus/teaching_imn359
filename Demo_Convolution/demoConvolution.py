@@ -2,7 +2,6 @@ import time
 
 import matplotlib.pyplot as plt
 import numpy as np
-from scipy.io import loadmat
 from scipy.signal import convolve2d
 from scipy.fft import fft2, fftshift, ifft2
 
