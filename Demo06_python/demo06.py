@@ -80,7 +80,7 @@ mandrill_TF_shift_masquee = np.zeros((n, n), dtype=complex)
 # on prend le centre du spectre du mandrill et le reste est rempli de 0 
 mandrill_TF_shift = fftshift(mandrill_TF)
 sel = np.array([n / 2 - m / 2, n / 2 + m / 2 + 1], dtype=int)
-mandrill_TF_shift_masquee[sel[0] : sel[1], sel[0] : sel[1]] = mandrill_TF_shift[sel[0] : sel[1], sel[0] : sel[1]]
+mandrill_TF_shift_masquee[sel[0]:sel[1], sel[0]:sel[1]] = mandrill_TF_shift[sel[0]:sel[1], sel[0]:sel[1]]
 
 fig, axs = plt.subplots(1,2)
 # On ajoute un petit epsilon (1e-8) pour ne pas avoir log(0)
@@ -108,7 +108,7 @@ m = n / 16  # 32 coefficients en X et Y
 mandrill_TF_shift_masquee = np.zeros((n, n), dtype=complex)
 
 sel = np.array([n / 2 - m / 2, n / 2 + m / 2 + 1], dtype=int)
-mandrill_TF_shift_masquee[sel[0] : sel[1], sel[0] : sel[1]] = mandrill_TF_shift[sel[0] : sel[1], sel[0] : sel[1]]
+mandrill_TF_shift_masquee[sel[0]:sel[1], sel[0]:sel[1]] = mandrill_TF_shift[sel[0]:sel[1], sel[0]:sel[1]]
 
 fig, axs = plt.subplots(1,2)
 axs[0].imshow(np.log(np.abs(mandrill_TF_shift_masquee) + 1e-8), cmap='gray')
@@ -139,7 +139,7 @@ cameraman_TF_shift_masquee = np.zeros((n, n), dtype=complex)
 cameraman_TF = fft2(cameraman)
 cameraman_TF_shift = fftshift(cameraman_TF)
 sel = np.array([n / 2 - m / 2, n / 2 + m / 2 + 1], dtype=int)
-cameraman_TF_shift_masquee[sel[0] : sel[1], sel[0] : sel[1]] = cameraman_TF_shift[sel[0] : sel[1], sel[0] : sel[1]]
+cameraman_TF_shift_masquee[sel[0]:sel[1], sel[0]:sel[1]] = cameraman_TF_shift[sel[0]:sel[1], sel[0]:sel[1]]
 
 fig, axs = plt.subplots(1,2)
 axs[0].imshow(np.log(np.abs(cameraman_TF_shift_masquee) + 1e-8), cmap='gray')
@@ -179,7 +179,7 @@ plt.show()
 m = n/2
 cameraman_bruit_TF_shift_masquee = np.zeros((n, n), dtype=complex)
 sel = np.array([n / 2 - m / 2, n / 2 + m / 2 + 1], dtype=int)
-cameraman_bruit_TF_shift_masquee[sel[0] : sel[1], sel[0] : sel[1]] = cameraman_bruit_TF_shift[sel[0] : sel[1], sel[0] : sel[1]]
+cameraman_bruit_TF_shift_masquee[sel[0]:sel[1], sel[0]:sel[1]] = cameraman_bruit_TF_shift[sel[0]:sel[1], sel[0]:sel[1]]
 
 fig, axs = plt.subplots(1,3, sharex=True, sharey=True)
 axs[0].imshow(cameraman, cmap='gray')
