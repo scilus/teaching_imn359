@@ -2,21 +2,26 @@ import matplotlib.pyplot as plt
 import numpy as np
 from scipy.io import loadmat
 
-from scipy.fft import fft, fftshift, ifftshift, ifft
+from scipy.fft import fft, fftshift
 
 from delta import delta
 
-# Exemple d'echantillonnage
+# Exemple d'échantillonnage
 f0 = 4
-t=np.linspace(0, 1, 1000) # 1000 Hz
-f=np.linspace(-500, 500, 1000) # 1000 Hz
+t = np.linspace(0, 1, 1000) # 1000 échantillons/seconde
+f = np.arange(-500, 500) # 1000 Hz
 y = np.cos(2 * np.pi * f0 * t)
 
 plt.clf()
 plt.plot(t, y, linewidth=2)
+plt.title(f"Signal avec une frequence de {f0} cycles/seconde")
+plt.xlabel("Temps (s)")
 plt.show()
 
+plt.clf()
 plt.plot(f, np.abs(fftshift(fft(y))), 'bo')
+plt.title(f"TF du signal avec peak à la fréquence {f0}")
+plt.xlabel("Frequence (Hz)")
 plt.show()
 
 
