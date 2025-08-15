@@ -1,6 +1,5 @@
 import matplotlib.pyplot as plt
 import numpy as np
-from scipy.io import loadmat
 
 from dct import dct
 from idct import idct
@@ -36,9 +35,8 @@ axs[0].plot(x)
 axs[1].plot(np.squeeze(X))
 plt.show()
 
-
 # Piece-regular
-x0 = loadmat("piece-regular.mat")['x0']
+x0 = np.load('piece-regular.npy')
 X0 = np.abs(fft2(x0))
 X0_shift = np.abs(fftshift(fft2(x0)))
 fig, axs = plt.subplots(3, 1)
@@ -74,7 +72,7 @@ plt.show()
 
 # In 2D
 # Fourier classique
-M = loadmat('lena.mat')['M']
+M = np.load('lena.npy')
 n = M.shape[0]
 m = int(n/8)
 F = fftshift(fft2(M))
@@ -120,7 +118,7 @@ plt.show()
 # fait la DCT JPEG est basée sur cette approche
 # ###########################################################
 
-x0 = loadmat('piece-regular.mat')['x0']
+x0 = np.load('piece-regular.npy')
 n = x0.shape[0]
 # n = 1024
 
