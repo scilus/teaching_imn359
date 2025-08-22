@@ -1,10 +1,10 @@
 import matplotlib.pyplot as plt
 import numpy as np
-from scipy.io import loadmat
 
 from scipy.fft import fft, fftshift
 
-from delta import delta
+from fonctions.io import read_data
+from fonctions.delta import delta
 
 # Exemple d'échantillonnage
 f0 = 4
@@ -100,7 +100,7 @@ plt.show()
 plt.clf()
 
 # Echantillonnage du piece regular
-M = np.load('piece-regular.npy')
+M = read_data('piece-regular_1024.npy')
 
 # C'est comme si on avait echantillonne le signal a tous les 1/1024 pts
 # ou 1024 Hz

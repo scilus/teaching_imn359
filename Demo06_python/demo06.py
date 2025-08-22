@@ -3,15 +3,15 @@ Demo06 -- Transformée de Fourier discrète 2D
 """
 import matplotlib.pyplot as plt
 import numpy as np
-from scipy.io import loadmat
 
 from scipy.fft import fft2, fftshift, ifftshift, ifft2
 
-from snr import snr
+from fonctions.snr import snr
+from fonctions.io import read_data
 
 # Demo06
 # Lena
-lena = np.load('lena.npy')
+lena = read_data('lena.npy')
 
 plt.imshow(lena)
 plt.savefig('lena.jpg')
@@ -53,7 +53,7 @@ plt.show()
 ################################
 # Autre exemple avec le mandrill
 ################################
-mandrill = np.load('mandrill.npy')
+mandrill = read_data('mandrill.npy')
 
 # Calculer et afficher la transformée de Fourier (sur une échelle
 # logarithmique). La fonction fftshift permet de mettre la fréquence
@@ -131,7 +131,7 @@ plt.show()
 ##############################
 # Un exemple avec le cameraman
 ##############################
-cameraman = np.load('cameraman.npy')
+cameraman = read_data('cameraman.npy')
 n = 512
 m = n/4
 cameraman_TF_shift_masquee = np.zeros((n, n), dtype=complex)
