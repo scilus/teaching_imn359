@@ -1,9 +1,9 @@
 import matplotlib.pyplot as plt
 import numpy as np
-from scipy.io import loadmat
 
-from dct import dct
-from idct import idct
+from fonctions.dct import dct
+from fonctions.idct import idct
+from fonctions.io import read_data
 
 from scipy.fft import fft, fftshift, ifft
 
@@ -17,7 +17,7 @@ from scipy.fft import fft, fftshift, ifft
 # Exemple avec un signal sonore
 # ####################################################
 
-x = np.load('bird.npy')
+x = read_data('bird.npy')
 n = x.shape[0]
 x_dct = dct(x)
 
