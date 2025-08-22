@@ -1,6 +1,6 @@
 import numpy as np
 
-from mes_fonctions import racine
+from fonctions.math import racine
 
 # les nombres complexes
 # Pour calculer les racines de nombres négatifs

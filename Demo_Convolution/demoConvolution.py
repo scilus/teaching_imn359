@@ -5,7 +5,7 @@ import numpy as np
 from scipy.signal import convolve2d
 from scipy.fft import fft2, fftshift, ifft2
 
-from utils import add_square_around_zoom
+from fonctions.utils import add_square_around_zoom
 
 ##################
 # CONVOLUTION 1D

@@ -21,16 +21,16 @@ def convolve_2d_info_copied_from_internet(in1, in2, mode='full', boundary='fill'
         First input.
     in2: array_like
         Second input. Should have the same number of dimensions as in1.
-    mode: str {‘full’, ‘valid’, ‘same’}, optional
+    mode: str {`full`, `valid`, `same`}, optional
         A string indicating the size of the output:
             - full: The output is the full discrete linear convolution of the
                 inputs. (Default)
             - valid: The output consists only of those elements that do not
-                rely on the zero-padding. In ‘valid’ mode, either in1 or
+                rely on the zero-padding. In `valid` mode, either in1 or
                 in2 must be at least as large as the other in every dimension.
             - same: The output is the same size as in1, centered with respect
-                to the ’full’ output.
-    boundary: str {‘fill’, ‘wrap’, ‘symm’}, optional
+                to the`full` output.
+    boundary: str {`fill`, `wrap`, `symm`}, optional
         A flag indicating how to handle boundaries:
             - fill: pad input arrays with fillvalue. (default)
             - wrap: circular boundary conditions.

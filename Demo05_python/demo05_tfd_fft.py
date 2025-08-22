@@ -24,8 +24,9 @@ g4 = np.fft.fft(g)
 print(g4)
 
 
-from scipy.fft import fft, fftshift, ifft 
-g = np.load("piece_regular.npy")
+from scipy.fft import fft, fftshift
+from fonctions.io import read_data
+g = read_data('piece-regular_512.npy')
 G = fft(g)
 t = np.linspace(0, 1, np.shape(g)[0])
 f = np.linspace(-256, 256, 512)
