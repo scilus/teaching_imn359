@@ -38,6 +38,7 @@ axs[0].plot(f, '.-')
 axs[0].set_title('Signal')
 axs[1].plot(Coarse, '.-')
 axs[1].set_title('Coarse')
+fig.tight_layout()
 plt.show()
 
 # On zoom dans une region de Coarse
@@ -52,6 +53,7 @@ axs[1].plot(Coarse, 'o-')
 axs[1].set_xlim([(s-t)/2, (s+t)/2])
 axs[1].set_ylim([np.min(A), np.max(A)])
 axs[1].set_title('Averages (zoom)')
+fig.tight_layout()
 plt.show()
 
 # plot Details
@@ -60,6 +62,7 @@ axs[0].plot(f, '.-')
 axs[0].set_title('Signal')
 axs[1].plot(Detail, '.-')
 axs[1].set_title('Details')
+fig.tight_layout()
 plt.show()
 
 # plot both
@@ -68,6 +71,7 @@ axs[0].plot(f)
 axs[0].set_title('Signal')
 axs[1].plot(A)
 axs[1].set_title('Transformed')
+fig.tight_layout()
 plt.show()
 
 fig, axs = plt.subplots(2, 1)
@@ -75,6 +79,7 @@ axs[0].plot(A[0:256])
 axs[0].set_title('Signal')
 axs[1].plot(A[256:])
 axs[1].set_title('Transformed')
+fig.tight_layout()
 plt.show()
 
 #################################################################
@@ -119,7 +124,7 @@ plt.show()
 # Approximations #
 ##################
 cut = 100
-fw_a = np.zeros((fw.shape[0], 1))
+fw_a = np.zeros((fw.shape[0],))
 fw_a[0:cut] = fw[0:cut]
 
 fw_max = perform_thresholding(fw, cut, 'largest')
