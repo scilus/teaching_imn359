@@ -1,19 +1,20 @@
 import numpy as np
-from idct import idct
+from fonctions.dct import dct
 
-def idct2(a, mrows=0, ncols=0):
+
+def dct2(a, mrows=0, ncols=0):
   """
-  iDCT2 Compute 2-D inverse discrete cosine transform.
+  DCT2 Compute 2-D discrete cosine transform.
   Returns the discrete cosine transform of A.
   The matrix B is the same size as A and contains the
   discrete cosine transform coefficients.
 
-  B = IDCT2(A,M,N) pads the matrix A with
+  B = DCT2(A,M,N) pads the matrix A with
   zeros to size M-by-N before transforming. If M or N is
-  smaller than the corresponding dimension of A, iDCT2 truncates
+  smaller than the corresponding dimension of A, DCT2 truncates
   A. 
 
-  This transform can be inverted using DCT2.
+  This transform can be inverted using IDCT2.
 
   Parameters
   ----------
@@ -31,12 +32,13 @@ def idct2(a, mrows=0, ncols=0):
     Communications of the ACM, April 1991.
   https://www.tutorialspoint.com/execute_matlab_online.php
   """
+
   m = a.shape[0]
   n = a.shape[0]
 
   if (mrows == 0) and (ncols == 0):
       if (m > 1) and (n > 1): 
-        b = idct(idct(a).T).T
+        b = dct(dct(a).T).T
         return b
       else:
         mrows = m 
@@ -56,8 +58,8 @@ def idct2(a, mrows=0, ncols=0):
     npad = 1
 
   # Transform 
-  b = idct(a, mpad)
+  b = dct(a, mpad)
   if (m > 1) and (n > 1):
-    b = idct(b.T, npad).T
+    b = dct(b.T, npad).T
 
   return b

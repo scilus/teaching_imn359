@@ -1,15 +1,16 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-from dct import dct
-from idct import idct
-from dct2 import dct2
-from idct2 import idct2
-from snr import snr
+from fonctions.dct import dct
+from fonctions.idct import idct
+from fonctions.dct2 import dct2
+from fonctions.idct2 import idct2
 
 from scipy.fft import fft2, fftshift, ifftshift, ifft2
 
-from perform_thresholding import perform_thresholding
+from fonctions.io import read_data
+from fonctions.threshold import perform_thresholding
+from fonctions.snr import snr
 
 # DCT. Exemple 1.
 # Échantillonnage 0.001s
@@ -44,7 +45,7 @@ axs[1].set_title('DCT')
 plt.show()
 
 # Maintenant avec le piece-regular
-x0 = np.load('piece-regular.npy')
+x0 = read_data('piece-regular_1024.npy')
 X0 = np.abs(fft2(x0))
 X0_shift = np.abs(fftshift(fft2(x0)))
 fig, axs = plt.subplots(3, 1)
@@ -83,7 +84,7 @@ fig.tight_layout()
 plt.show()
 
 # Maintenant la même chose en 2D avec Fourier classique
-M = np.load('lena.npy')
+M = read_data('lena.npy')
 n = M.shape[0]
 
 # On garde 1/8 des coefficients pour chaque dimension (total: n/8*n/8 coefficients)
@@ -141,7 +142,7 @@ plt.show()
 # ###########################################################
 
 # On travaille sur le piece-regular
-x0 = np.load('piece-regular.npy')
+x0 = read_data('piece-regular_1024.npy')
 n = x0.shape[0] # n = 1024
 
 # la full DCT reconstruction sans couper des coefficients
