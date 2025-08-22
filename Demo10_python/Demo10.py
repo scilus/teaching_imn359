@@ -2,11 +2,13 @@ import matplotlib.pyplot as plt
 import numpy as np
 from scipy.signal import convolve2d
 
+from fonctions.io import read_data
+
 # On charge notre pyramide de résolutions
 # img est un dictionnaire. L'image originale est donnée par img['f']
 # et chaque niveau de la pyramide est donné par img['f1'], img['f2'],
 # etc. (jusqu'à f7).
-img = np.load('cameraman_pyramid.npz')
+img = read_data('cameraman_pyramid.npz')
 
 # On visualise la pyramide.
 # Chaque resize a été obtenu par interpolation bicubique.
