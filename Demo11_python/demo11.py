@@ -1,15 +1,14 @@
 import matplotlib.pyplot as plt
 import numpy as np
-from scipy.io import loadmat
 
-from computeHaar1D import computeHaar1D
-from computeHaar1DReconstruction import computeHaar1DReconstruction
-from perform_thresholding import perform_thresholding
+from fonctions.io import read_data
+from fonctions.ondelette import computeHaar1D, computeHaar1DReconstruction
+from fonctions.threshold import perform_thresholding
 
 #### Demo des ondelettes de Haar 1D
 ############# 1 D Haar Wavelet DECOMPOSITION ################
 # get signal
-f = loadmat('piece_regular.mat')['piece_regular']
+f = read_data('piece-regular_512.npy')
 n = 512
 plt.plot(f)
 plt.show()
