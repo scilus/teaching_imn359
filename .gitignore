@@ -4,3 +4,5 @@
 __pycache__
 text
 build
+*.jpg
+*.png

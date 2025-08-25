@@ -81,7 +81,23 @@ mat = np.random.rand(8, 8)
 plt.imshow(mat)
 plt.show()
 
-lena = np.load('lena.npy')
+# On va visualiser une image. Pour charger un fichier, il faut connaitre
+# son emplacement sur votre ordinateur. On va utiliser la librairie
+# pathlib pour ce faire.
+from pathlib import Path
+
+# La variable __file__ donne le fichier dans lequel on se trouve
+# (ici 4-Graphiques.py). `Path(__file__).parent` donne le dossier
+# contenant le fichier courant.
+directory = Path(__file__).parent
+
+# Le dossier contenant le fichier courant étant également
+# le dossier contenant l'image, on utilise joinpath pour
+# avoir le path absolu de notre image.
+image_path = directory.joinpath('lena.npy')
+
+print("Path de l'image:", image_path)
+lena = np.load(image_path)
 
 plt.imshow(lena)
 plt.show()
