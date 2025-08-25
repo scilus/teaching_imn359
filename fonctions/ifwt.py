@@ -1,8 +1,8 @@
 # Compute iFWT
 import numpy as np
 import matplotlib.pyplot as plt
-from general import upsampling
-from cconv import cconv 
+from fonctions.general import upsampling
+from fonctions.cconv import cconv 
 
 def ifwt(fw, h, g, visu=False):
     n = fw.size

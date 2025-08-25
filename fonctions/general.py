@@ -1,11 +1,5 @@
 import numpy as np
-import pylab
-import matplotlib.image as mpimg
-import matplotlib.pyplot as plt
-from scipy import ndimage
 # general.py TODO: try to not make use of transform.resize
-from skimage import transform ## commented
-
 
 def crop(M, n=None):
     """ crop - crop an image to reduce its size
@@ -69,6 +63,7 @@ def rescale(f,a=0,b=1):
         g = g / v
     return a + g*(b-a)
 
+
 def reverse(x):
     """
         Reverse a vector.
@@ -123,5 +118,3 @@ def subsampling(x):
     y = x[::p]
 
     return y
-
-

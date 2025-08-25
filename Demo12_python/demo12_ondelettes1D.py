@@ -1,16 +1,15 @@
 import matplotlib.pyplot as plt
 import numpy as np
-from scipy.io import loadmat
 
-from perform_thresholding import perform_thresholding
-from compute_wavelet_filter import compute_wavelet_filter
-from cconv import cconv
-from general import upsampling, subsampling, reverse, circshift1d
-from fwt import fwt
-from ifwt import ifwt
+from fonctions.io import read_data
+from fonctions.wavelet_filter import compute_wavelet_filter
+from fonctions.cconv import cconv
+from fonctions.general import upsampling, subsampling, reverse, circshift1d
+from fonctions.fwt import fwt
+from fonctions.ifwt import ifwt
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-f = loadmat('piece_regular.mat')['piece_regular']
+f = read_data('piece-regular_512.npy')
 f = np.squeeze(f)
 n = 512
 
@@ -18,15 +17,20 @@ n = 512
 #% Approximation avec des ondelettes
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 #% Haar = D2
-h = [0, 1/np.sqrt(2), 1/np.sqrt(2)]
-g = [0, 1/np.sqrt(2), -1/np.sqrt(2)]
+h = np.array([0, 1/np.sqrt(2), 1/np.sqrt(2)])
+g = np.array([0, 1/np.sqrt(2), -1/np.sqrt(2)])
+
+# ! La fonction compute_wavelet_filter implemente seulement les ondelettes de Daubechies !
 h_d2 = compute_wavelet_filter('Daubechies', 1) # Haar = D2 = Daubechies d'ordre 1, 2 coefficients non nul
-print(h, h_d2, g)
+
+# Comparez h et h_d2, ce sont les memes valeurs
+print(h, np.asarray(h_d2), g)
 
 # convolution spherique sur la dimension 0, necessaire pour les ondelettes
 approx = cconv( f, h_d2, 0)
 a = subsampling(approx)
-print('Dimension de la cconv(f) et sa version subsampled par un facteur 2', approx.size, a.size)
+print('Dimension de la cconv(f):', approx.size)
+print('et sa version subsampled par un facteur 2:', a.size)
 plt.plot(approx, 'b')
 plt.plot(a, 'r')
 plt.show()
@@ -104,7 +108,7 @@ for j in np.arange(JMax):
         plt.title('Forme des ondelettes à la résolution j = ' + str(j), fontsize=16)
     plt.plot(f1)
     plt.show()
-    k = k+1;    
+    k = k+1
 
 
 # on refait les formes pour Haar
@@ -124,4 +128,4 @@ for j in np.arange(JMax):
         plt.title('Forme des ondelettes à la résolution j = ' + str(j), fontsize=16)
     plt.plot(f1)
     plt.show()
-    k = k+1;    
+    k = k+1

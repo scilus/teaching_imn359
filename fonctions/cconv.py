@@ -1,5 +1,5 @@
 import numpy as np
-from general import circshift1d
+from fonctions.general import circshift1d
 
 
 def cconv(x, h, d):

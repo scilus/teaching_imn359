@@ -1,21 +1,21 @@
 import matplotlib.pyplot as plt
 import numpy as np
-from scipy.io import loadmat
 
 from scipy.fft import fft, fftshift, ifft, dct, idct
+from fonctions.io import read_data
+from fonctions.threshold import perform_thresholding
 
-from perform_thresholding import perform_thresholding
-from fwt import fwt
-from ifwt import ifwt
-from general import reverse
+from fonctions.fwt import fwt
+from fonctions.ifwt import ifwt
+from fonctions.general import reverse
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-#% APPROXIMATIONS LIN�AIRES DANS DES BASES
+#% APPROXIMATIONS LINÉAIRES DANS DES BASES
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-f = loadmat('piece_regular.mat')['piece_regular']
+f = read_data('piece-regular_512.npy')
 f = np.squeeze(f)
 n = 512
-m = 128   # nombre de coefficients qui gardent
+m = 128   # nombre de coefficients qu'on garde
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 #% Approximation dans Fourier

@@ -1,8 +1,8 @@
 # Compute FWT
 import numpy as np
 import matplotlib.pyplot as plt
-from general import subsampling
-from cconv import cconv
+from fonctions.general import subsampling
+from fonctions.cconv import cconv
 
 def fwt(signal, h, g, visu=False):
     n = signal.size
