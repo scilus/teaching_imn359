@@ -21,7 +21,7 @@ limitant à cette dernière.
 
 """
 
-from fonctions.intro import HelloWorld, Retourner42
+from mes_fonctions import HelloWorld, Retourner42
 
 HelloWorld()
 

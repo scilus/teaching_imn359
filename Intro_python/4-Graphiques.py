@@ -81,8 +81,7 @@ mat = np.random.rand(8, 8)
 plt.imshow(mat)
 plt.show()
 
-from fonctions.io import read_data
-lena = read_data('lena.npy')
+lena = np.load('lena.npy')
 
 plt.imshow(lena)
 plt.show()
