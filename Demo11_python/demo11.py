@@ -11,23 +11,23 @@ from fonctions.threshold import perform_thresholding
 f = read_data('piece-regular_512.npy')
 n = 512
 plt.plot(f)
+plt.title('Signal')
 plt.show()
 
-# Initialize coeffs as signal itself,
-# scale 2^9 = 512 bins, resolution 2^{-9}
+# Initialiser les coefficients avec le signal lui-même,
+# Échelle 2^9 = 512 bins, résolution 2^{-9}
 fw = f.copy()
 
-# initial scale j is the max one
+# Échelle initiale j est l'échelle max
 j = np.log2(n) - 1
 
-# fw coefficients will be iteratively computed until 
-# they contain the Haar wavelet
+# Les coefficients seront calculés itérativement jusqu'à
+# ce qu'ils contiennent les ondelettes de Harr.
 A = fw[0:2**(int(j)+1)]
 
 # 256 x 1
-# We compute average and differences to get coarse and details.
-# They are weighted by 1/sqrt(2) to maintain orthogonality.
-
+# Calcul de la moyenne et des différences pour obtenir `coarse` et `details`.
+# Normalisation par 1/sqrt(2) pour conserver l'orthogonalité.
 Coarse = (A[::2] + A[1::2]) / 2
 Detail = (A[::2] - A[1::2]) / 2
 
@@ -65,7 +65,7 @@ axs[1].set_title('Details')
 fig.tight_layout()
 plt.show()
 
-# plot both
+# Signal et coarse et details
 fig, axs = plt.subplots(2, 1)
 axs[0].plot(f)
 axs[0].set_title('Signal')
@@ -74,41 +74,50 @@ axs[1].set_title('Transformed')
 fig.tight_layout()
 plt.show()
 
+# plot `coarse` et `details`
 fig, axs = plt.subplots(2, 1)
 axs[0].plot(A[0:256])
-axs[0].set_title('Signal')
+axs[0].set_title('Coarse')
 axs[1].plot(A[256:])
-axs[1].set_title('Transformed')
+axs[1].set_title('Details')
 fig.tight_layout()
 plt.show()
 
-#################################################################
-fw = computeHaar1D(f, n)
-#################################################################
+#####################################################################
+# Calcul des ondelettes de Haar pour tous les niveaux de la pyramide.
+#####################################################################
+fw = computeHaar1D(f, n)  # il y a un plt.show() dans la fonction
+
+# On plot tous les coefficients
 plt.plot(fw)
+plt.title('Ondelettes 1D')
 plt.show()
 
 print('Energy of the signal       = ', np.linalg.norm(f) ** 2)
 print('Energy of the coefficients = ', np.linalg.norm(fw) ** 2)
 
 ########################################################################
-# 1D Reconstruction
+# Reconstruction 1D
 #
-# Initialize the image to recover f1 as the transformed coefficient,
-# and select the smallest possible scale.
+# On initialise l'image pour reconstruire f1 en transformant les
+# coefficients.
 ########################################################################
 
 f1 = fw.copy()
 j = 0 
 
-# Retrieve coarse and detail coefficients in the vertical direction.
+# Exemple.
+# Extraire les coefficients coarse et details
 Coarse = f1[:2**j].copy()
 Detail = f1[2**j:2**(j+1)].copy()
 
+# Reconstruire le prochain niveau de la pyramide
 f1[0:2**(j+1):2] = (Coarse + Detail) / np.sqrt(2)
 f1[1:2**(j+1):2] = (Coarse - Detail) / np.sqrt(2)
 
-f1 = computeHaar1DReconstruction(fw, n)
+# On utilise la fonction computeHaar1DReconstruction pour faire
+# la reconstruction de maniere iterative.
+f1 = computeHaar1DReconstruction(fw, n)  # plt.show() dans la fonction
 
 # Original image versus Reconstructed image
 print('Error |f-f1|/|f| = ', np.linalg.norm(f-f1)/np.linalg.norm(f))
@@ -118,6 +127,7 @@ axs[0].plot(f)
 axs[0].set_title('Original Signal')
 axs[1].plot(f1)
 axs[1].set_title('Reconstructed signal with full HAAR transform, error = ' + str(np.linalg.norm(f-f1)/np.linalg.norm(f)))
+fig.tight_layout()
 plt.show()
 
 ##################
@@ -129,7 +139,10 @@ fw_a[0:cut] = fw[0:cut]
 
 fw_max = perform_thresholding(fw, cut, 'largest')
 
+# Reconstruction avec les 100 premiers coefficients
 f1_a = computeHaar1DReconstruction(fw_a, n)
+
+# reconstruction avec les 100 plus gros coefficients
 f1_max = computeHaar1DReconstruction(fw_max, n)
 
 fig, axs = plt.subplots(3, 1)
@@ -141,4 +154,5 @@ print('Error |f-f1_a|/|f| = ', np.linalg.norm(f-f1_a)/np.linalg.norm(f))
 axs[2].plot(f1_max)
 axs[2].set_title('Nonlinear approx with ' + str(cut) + 'coefficients')
 print('Error |f-f1_max|/|f| = ', np.linalg.norm(f-f1_max)/np.linalg.norm(f))
+fig.tight_layout()
 plt.show()
