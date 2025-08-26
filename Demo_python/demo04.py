@@ -54,7 +54,7 @@ plt.plot(w, f, '.-', linewidth=2)
 plt.savefig('demo04_ex2_amp.jpg')
 plt.show()
 
-# TODO: What's this next demo about?
+# Erreur quadratique moyenne numérique
 K = 100000
 x = np.arange(-np.pi, np.pi, 0.01)
 f = 0
@@ -70,7 +70,7 @@ plt.savefig('demo04_ex2_erreur.jpg')
 plt.show()
 
 err = np.mean((x-f)**2)
-print('Erreur quadratique numerique = {}'.format(err))
+print('Erreur quadratique moyenne numerique = {}'.format(err))
 
 # Gibbs ringing
 x = np.arange(-20, 20.1, 0.1)

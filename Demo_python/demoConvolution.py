@@ -6,12 +6,13 @@ from scipy.signal import convolve2d
 from scipy.fft import fft2, fftshift, ifft2
 
 from fonctions.utils import add_square_around_zoom
+from fonctions.io import read_data
 
 ##################
 # CONVOLUTION 1D
 ##################
 
-piece_regular = np.load('piece-regular.npy')
+piece_regular = read_data('piece-regular_512.npy')
 
 plt.plot(piece_regular)
 plt.show()
@@ -51,7 +52,7 @@ plt.show()
 ##################
 
 # Loading Lena
-lena = np.load("lena_float.npy")
+lena = read_data("lena.npy")
 plt.imshow(lena, cmap='gray')
 plt.show()
 print("Résolution: {}".format(lena.shape))

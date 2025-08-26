@@ -25,8 +25,7 @@ x_dct = dct(x)
 try:
     import sounddevice as sd
     sd.play(x, n)
-except OSError:
-    # possible que ça ne fonctionne pas s'il manque des librairies sur votre ordi
+except: # possible que ça ne fonctionne pas s'il manque des librairies sur votre ordi
     print('Erreur avec l\'audio. Tant pis, on va se contenter de regarder des graphiques.')
 
 # DCT locale
