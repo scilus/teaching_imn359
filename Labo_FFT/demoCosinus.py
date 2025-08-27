@@ -2,7 +2,7 @@ import cmath as cm
 import matplotlib.pyplot as plt
 import numpy as np
 
-from scipy.fft import fft, fftshift, ifftshift, ifft
+from scipy.fft import fft, fftshift, ifft
 
 # Demo d'un cos qui oscille N fois par periode
 k0 = 4

@@ -1,9 +1,0 @@
-function X = perform_largest_thresh(X,s)
-
-% perform_largest_thresh - keeps the s largest entry in X
-%
-
-v = sort(abs(X(:))); v = v(end:-1:1,:);
-v = v(round(s));
-X = X .* (abs(X)>=v);
-

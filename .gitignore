@@ -1,1 +1,8 @@
 .env
+.venv
+*.egg-info
+__pycache__
+text
+build
+*.jpg
+*.png

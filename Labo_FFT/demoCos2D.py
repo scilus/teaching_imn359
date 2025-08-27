@@ -2,7 +2,7 @@ import cmath as cm
 import matplotlib.pyplot as plt
 import numpy as np
 
-from scipy.fft import fft2, fftshift, ifftshift, ifft2
+from scipy.fft import ifftshift, ifft2
 
 # Demo texture
 # On se donne un spectre de Fourier 2D vide
